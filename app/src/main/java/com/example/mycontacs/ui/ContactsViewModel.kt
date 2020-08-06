@@ -17,7 +17,7 @@ class ContactsViewModel(private val contactsRespository: ContactsRepository):
 
     init { job = SupervisorJob() }
 
-    override fun onCleared() { 
+    override fun onCleared() {
         job.cancel()
         super.onCleared()
     }
