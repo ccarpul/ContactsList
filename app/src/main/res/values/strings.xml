@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">My Contacs</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_list_Favorite">FAVORITE CONTACTS</string>
+    <string name="description_list_Favorite">OHERS CONTACTS</string>
+    <string name="phone_detail">PHONE</string>
 </resources>

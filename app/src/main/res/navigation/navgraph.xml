@@ -14,7 +14,7 @@
         android:id="@+id/contactList"
         android:name="com.example.mycontacs.ui.ContactList"
         android:label="contact_list"
-        tools:layout="@layout/contact_list" >
+        tools:layout="@layout/style_list_contacts" >
         <action
             android:id="@+id/action_contactList_to_contactDetail"
             app:destination="@id/contactDetail" />

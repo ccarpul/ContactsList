@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/gray_gradient">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewListContacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:src="@drawable/user_image_small" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@+id/imageViewListContacts"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:src="@drawable/image_favorite_false" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView"
         android:layout_width="0dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent"
-        tool:text="Description Contact" />
-
-    <ImageView
-        android:id="@+id/appCompatImageView"
-        android:layout_width="@dimen/listContacts_image_width"
-        android:layout_height="@dimen/listContacts_image_height"
-        android:layout_margin="@dimen/listContacts_image_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tool:srcCompact= "@tools:sample/backgrounds/scenic"/>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
-        app:layout_constraintTop_toTopOf="parent"
-        tool:srcCompact="@tools:sample/backgrounds/scenic">
-
-    </ImageView>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="0dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
         android:gravity="center_vertical"
-        android:textSize="18sp"
+        android:textSize="@dimen/listContacts_contact_textSize"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        android:textColor="@color/color_black"
+        app:layout_constraintStart_toEndOf="@+id/imageViewFavorite"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="Name Contact" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/descriptionContact"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:textSize="@dimen/listContacts_description_textSize"
+        app:layout_constraintStart_toEndOf="@+id/imageViewFavorite"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView"
+        tool:text="Description Contact" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

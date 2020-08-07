@@ -3,4 +3,10 @@
     <dimen name="listContacts_image_width">60dp</dimen>
     <dimen name="listContacts_image_height">60dp</dimen>
     <dimen name="listContacts_image_margin">20dp</dimen>
+
+    <dimen name="listContacts_title_textSize">16sp</dimen>
+    <dimen name="listContacts_contact_textSize">22sp</dimen>
+    <dimen name="listContacts_description_textSize">16sp</dimen>
+
+
 </resources>
