@@ -29,7 +29,7 @@
         tool:src="@drawable/image_favorite_false" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/appCompatTextView"
+        android:id="@+id/nameListContact"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -50,7 +50,7 @@
         android:layout_marginTop="4dp"
         android:textSize="@dimen/listContacts_description_textSize"
         app:layout_constraintStart_toEndOf="@+id/imageViewFavorite"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nameListContact"
         tool:text="Description Contact" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

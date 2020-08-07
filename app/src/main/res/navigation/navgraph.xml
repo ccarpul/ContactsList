@@ -9,7 +9,7 @@
         android:id="@+id/contactDetail"
         android:name="com.example.mycontacs.ui.ContactDetail"
         android:label="contact_detail"
-        tools:layout="@layout/contact_detail" />
+        tools:layout="@layout/fragment_detail" />
     <fragment
         android:id="@+id/contactList"
         android:name="com.example.mycontacs.ui.ContactList"

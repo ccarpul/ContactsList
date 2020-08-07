@@ -60,9 +60,8 @@
         app:layout_constraintTop_toBottomOf="@+id/descriptionDetailContact" />
 
     <ListView
+        android:id="@+id/listViewDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/style_item_detail" />
-
-
 </LinearLayout>

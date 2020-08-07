@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:showIn="@layout/contact_list"
+    tools:showIn="@layout/fragment_list"
     tools:context=".MainActivity">
 
     <fragment
@@ -18,6 +18,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/contact_list"/>
+        tools:layout="@layout/fragment_list"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

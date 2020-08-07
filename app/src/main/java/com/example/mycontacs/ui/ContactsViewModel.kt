@@ -5,12 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mycontacs.model.Model
+import com.example.mycontacs.model.ModelContactsItem
 import com.example.mycontacs.utils.ResultWrapper
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 class ContactsViewModel(private val contactsRespository: ContactsRepository) :
     ViewModel(), CoroutineScope {
+
+    var pos = 0
 
     private var job: Job = Job()
     override val coroutineContext: CoroutineContext
@@ -27,14 +30,17 @@ class ContactsViewModel(private val contactsRespository: ContactsRepository) :
             return uiModel
         }
 
-    private var contacts: Model? = null
+    private var contacts: ArrayList<ModelContactsItem> = arrayListOf()
     private var contactsError: String? = null
 
     sealed class UiModel {
         object Loading : UiModel()
-        class Content(val contacts: Model?) : UiModel()
+        class Content(val contacts: ArrayList<ModelContactsItem>) : UiModel()
         object ShowUi : UiModel()
     }
+     fun getContactAtPosition(): ModelContactsItem{
+         return contacts[pos]
+     }
 
     fun getContacts() {
         launch {
