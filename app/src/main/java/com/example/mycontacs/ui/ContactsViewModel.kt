@@ -4,10 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mycontacs.model.Model
-import com.example.mycontacs.model.ModelContactsItem
+import com.example.mycontacs.data.model.ModelContactsItem
 import com.example.mycontacs.utils.ResultWrapper
+import com.example.mycontacs.utils.customSort
 import kotlinx.coroutines.*
+import java.util.*
 import kotlin.coroutines.CoroutineContext
 
 class ContactsViewModel(private val contactsRespository: ContactsRepository) :
@@ -30,15 +31,15 @@ class ContactsViewModel(private val contactsRespository: ContactsRepository) :
             return uiModel
         }
 
-    private var contacts: ArrayList<ModelContactsItem> = arrayListOf()
+    private var contacts: ArrayList<Any> = arrayListOf()
     private var contactsError: String? = null
 
     sealed class UiModel {
         object Loading : UiModel()
-        class Content(val contacts: ArrayList<ModelContactsItem>) : UiModel()
+        class Content(val contacts: ArrayList<Any>) : UiModel()
         object ShowUi : UiModel()
     }
-     fun getContactAtPosition(): ModelContactsItem{
+     fun getContactAtPosition(): Any{
          return contacts[pos]
      }
 
@@ -49,7 +50,7 @@ class ContactsViewModel(private val contactsRespository: ContactsRepository) :
             when (val result = contactsRespository.getContacts()) {
                 is ResultWrapper.Success -> {
                     val responseData = result.value
-                    contacts = responseData
+                    contacts.addAll(customSort(responseData.toList()))
                 }
                 is ResultWrapper.NetworkError -> {
                     contactsError = result.throwable.localizedMessage

@@ -1,21 +1,29 @@
 package com.example.mycontacs.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mycontacs.MainActivity
 import com.example.mycontacs.R
 import com.example.mycontacs.adapter.AdapterRecyclerView
-import com.example.mycontacs.model.ModelContactsItem
+import com.example.mycontacs.adapter.Header
+import com.example.mycontacs.data.model.Address
+import com.example.mycontacs.data.model.ModelContactsItem
+import com.example.mycontacs.data.model.Phone
+import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
 
 class ContactList : Fragment(),AdapterRecyclerView.OnClickSelectedItem {
 
@@ -25,8 +33,11 @@ class ContactList : Fragment(),AdapterRecyclerView.OnClickSelectedItem {
     private var adapterRecycler: AdapterRecyclerView =
         AdapterRecyclerView(arrayListOf(), this)
 
+    private lateinit var textViewTitleBar: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        textViewTitleBar = (activity as MainActivity).textView_titleBar
         contactsViewModel.model.observe(this, Observer ( ::uiUpdate))
     }
 
@@ -43,10 +54,19 @@ class ContactList : Fragment(),AdapterRecyclerView.OnClickSelectedItem {
         setupRecyclerView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        textViewTitleBar.text = getString(R.string.titleToolbar)
+        textViewTitleBar.setTextColor(Color.WHITE)
+        textViewTitleBar.textAlignment = View.TEXT_ALIGNMENT_CENTER
+        textViewTitleBar.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
+    }
+
     fun uiUpdate(model: ContactsViewModel.UiModel){
         when(model){
             is ContactsViewModel.UiModel.Loading -> Log.i("Carpul", "Loading")
             is ContactsViewModel.UiModel.Content -> {
+
                 adapterRecycler.addData(model.contacts)
         }
             is ContactsViewModel.UiModel.ShowUi -> {

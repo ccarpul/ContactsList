@@ -1,8 +1,7 @@
-package com.example.mycontacs.api
+package com.example.mycontacs.data.api
 
 import com.example.mycontacs.utils.Constants
-import com.example.mycontacs.model.Model
-import com.example.mycontacs.model.ModelContactsItem
+import com.example.mycontacs.data.model.ModelContactsItem
 import retrofit2.http.GET
 
 

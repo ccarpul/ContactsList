@@ -1,7 +1,7 @@
-package com.example.mycontacs.model
+package com.example.mycontacs.data.model
 
 
-data class Model(val modelContactsItem: ModelContactsItem): ArrayList<ModelContactsItem>()
+data class Model(val modelContactsItem: ModelContactsItem) : ArrayList<ModelContactsItem>()
 
 data class ModelContactsItem(
     val name: String,
@@ -23,6 +23,7 @@ data class Address(
     val street: String,
     val zipCode: String
 )
+
 data class Phone(
     val home: String?,
     val mobile: String?,

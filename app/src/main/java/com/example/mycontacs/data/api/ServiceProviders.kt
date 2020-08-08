@@ -1,4 +1,4 @@
-package com.example.mycontacs.api
+package com.example.mycontacs.data.api
 
 import com.example.mycontacs.utils.Constants
 import okhttp3.OkHttpClient

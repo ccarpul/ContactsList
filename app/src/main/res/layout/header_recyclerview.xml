@@ -1,12 +1,12 @@
 <androidx.appcompat.widget.AppCompatTextView
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/othersContactsTitle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/green_gradient"
-    android:paddingStart="@dimen/listContacts_title_textSize"
-    android:paddingEnd="@dimen/listContacts_title_textSize"
-    android:text="@string/description_list_Favorite"
+    android:padding="6dp"
     android:textColor="@color/color_black"
     android:textSize="@dimen/listContacts_title_textSize"
     android:textStyle="bold"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    tools:text= "FAVORITE CONTACTS"
+    tools:background="@drawable/gray_gradient"/>

@@ -1,7 +1,16 @@
 <resources>
     <string name="app_name">My Contacs</string>
 
-    <string name="title_list_Favorite">FAVORITE CONTACTS</string>
+    <string name="title_list_Favorites">FAVORITE CONTACTS</string>
+    <string name="title_list_Others">OTHERS CONTACTS</string>
     <string name="description_list_Favorite">OHERS CONTACTS</string>
     <string name="phone_detail">PHONE</string>
+    <string name="phoneitemtitle">PHONE</string>
+    <string name="addressItemTitle">ADDRESS</string>
+    <string name="birthdayItemTitle">BIRTHDAY</string>
+    <string name="emailItemTitle">EMAIL</string>
+    <string name="homeTypePhone">Home</string>
+    <string name="mobileTypePhone">Mobile</string>
+    <string name="workTypePhone">Work</string>
+    <string name="titleToolbar">Contacts</string>
 </resources>
