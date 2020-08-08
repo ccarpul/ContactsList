@@ -1,6 +1,5 @@
 package com.example.mycontacs.model
 
-import android.provider.ContactsContract
 
 data class Model(val modelContactsItem: ModelContactsItem): ArrayList<ModelContactsItem>()
 
