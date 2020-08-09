@@ -89,7 +89,7 @@ class AdapterRecyclerView(private var list: ArrayList<Any>,
                 if (!contacts.smallImageURL.isNullOrBlank()) {
                     Picasso.with(itemView.context).load(contacts.smallImageURL)
                         .placeholder(R.drawable.user_image_small)
-                        .resize(220, 220)
+                        .resize(225, 225)
                         .centerCrop()
                         .into(imageViewListContacts)
                 }
