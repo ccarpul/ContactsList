@@ -1,6 +1,6 @@
-<androidx.appcompat.widget.AppCompatTextView
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:androoid="http://schemas.android.com/apk/res-auto"
     android:id="@+id/othersContactsTitle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,5 +8,5 @@
     android:textColor="@color/color_black"
     android:textSize="@dimen/listContacts_title_textSize"
     android:textStyle="bold"
-    tools:text= "FAVORITE CONTACTS"
-    tools:background="@drawable/gray_gradient"/>
+    android:background="@color/color_gray"
+    tools:text="FAVORITE CONTACTS" />

@@ -1,5 +1,6 @@
 package com.example.mycontacs.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,8 @@ import com.example.mycontacs.R
 import com.example.mycontacs.adapter.modelAdapter.Header
 import com.example.mycontacs.data.model.ModelContactsItem
 import com.example.mycontacs.utils.Category
+import com.example.mycontacs.utils.hide
+import com.example.mycontacs.utils.show
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.header_recyclerview.view.*
 import kotlinx.android.synthetic.main.style_list_contacts.view.*
@@ -30,7 +33,7 @@ class AdapterRecyclerView(private var list: ArrayList<Any>,
                 )
             }
             Category.TYPE_HEADER -> {
-                HeaderViewHolder(
+               HeaderViewHolder(
                     LayoutInflater.from(parent.context)
                         .inflate(R.layout.header_recyclerview, parent, false)
                 )
@@ -80,11 +83,8 @@ class AdapterRecyclerView(private var list: ArrayList<Any>,
             itemView.apply {
                 nameListContact.text = contacts.name
                 descriptionContact.text = contacts.companyName
-                if (contacts.isFavorite) {
-                    imageViewFavorite
-                        .setImageDrawable(resources.getDrawable(R.drawable.image_favorite_true))
-                } else imageViewFavorite
-                    .setImageDrawable(resources.getDrawable(R.drawable.image_favorite_false))
+                if (contacts.isFavorite) imageViewFavorite.show()
+                else imageViewFavorite.hide()
 
                 if (!contacts.smallImageURL.isNullOrBlank()) {
                     Picasso.with(itemView.context).load(contacts.smallImageURL)

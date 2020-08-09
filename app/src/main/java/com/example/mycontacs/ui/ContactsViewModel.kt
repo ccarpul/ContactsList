@@ -13,16 +13,13 @@ import kotlin.coroutines.CoroutineContext
 
 class ContactsViewModel(private val contactsRespository: ContactsRepository) :
     ViewModel(), CoroutineScope {
-
     var pos = 0
 
     private var job: Job = Job()
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    init {
-        job = SupervisorJob()
-    }
+    init { job = SupervisorJob() }
 
     private val uiModel = MutableLiveData<UiModel>()
     val model: LiveData<UiModel>
@@ -67,21 +64,16 @@ class ContactsViewModel(private val contactsRespository: ContactsRepository) :
         }
     }
 
-    fun refresh() {
-        uiModel.value = UiModel.ShowUi
-    }
+    private fun refresh() { uiModel.value = UiModel.ShowUi }
 
-    fun setCategory(category: Boolean) {
+    fun setCategory(category: Boolean, idCurrent: String) {
 
-        val newItemContact = contacts[pos] as ModelContactsItem
-        val idModifyContact = newItemContact.id
         responseData.forEach {
-            if(it.id ==idModifyContact) {
-                it.isFavorite = category
-            }
+            if(it.id == idCurrent)  it.isFavorite = category
         }
         contacts = arrayListOf()
         contacts.addAll(responseData.customSort())
+
         uiModel.value = UiModel.Content(contacts)
     }
 

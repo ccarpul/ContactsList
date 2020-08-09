@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycontacs.MainActivity
 import com.example.mycontacs.R
 import com.example.mycontacs.adapter.AdapterRecyclerView
+import com.example.mycontacs.utils.hide
+import com.example.mycontacs.utils.setImage
+import com.example.mycontacs.utils.setupToolbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -49,13 +52,11 @@ class ContactList : Fragment(),AdapterRecyclerView.OnClickSelectedItem {
         configToolbar()
     }
 
-    fun uiUpdate(model: ContactsViewModel.UiModel){
+    private fun uiUpdate(model: ContactsViewModel.UiModel){
         when(model){
             is ContactsViewModel.UiModel.Loading -> Log.i("Carpul", "Loading")
             is ContactsViewModel.UiModel.Content -> adapterRecycler.addData(model.contacts)
-            is ContactsViewModel.UiModel.ShowUi -> {
-                contactsViewModel.getContacts()
-            }
+            is ContactsViewModel.UiModel.ShowUi  -> contactsViewModel.getContacts()
         }
     }
 
@@ -72,16 +73,12 @@ class ContactList : Fragment(),AdapterRecyclerView.OnClickSelectedItem {
         val navController = findNavController()
         navController.navigate(R.id.action_contactList_to_contactDetail)
     }
-    fun configToolbar(){
+    private fun configToolbar(){
 
-        textViewTitleBar.apply {
-            text = getString(R.string.titleToolbar)
-            setTextColor(Color.WHITE)
-            textAlignment = View.TEXT_ALIGNMENT_CENTER
-            setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-        }
-
-        imageViewTitleBar.visibility = View.GONE
+        textViewTitleBar
+            .setupToolbar(getString(R.string.titleToolbar), Color.WHITE, View.TEXT_ALIGNMENT_CENTER)
+        textViewTitleBar.setImage(0)
+        imageViewTitleBar.hide()
     }
 
 }

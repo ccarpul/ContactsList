@@ -9,12 +9,18 @@
         android:id="@+id/contactDetail"
         android:name="com.example.mycontacs.ui.ContactDetail"
         android:label="contact_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_contactDetail_to_contactList"
+            app:destination="@id/contactList"
+            app:popUpTo="@id/navgraph"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/contactList"
         android:name="com.example.mycontacs.ui.ContactList"
         android:label="contact_list"
-        tools:layout="@layout/style_list_contacts" >
+        tools:layout="@layout/activity_main" >
         <action
             android:id="@+id/action_contactList_to_contactDetail"
             app:destination="@id/contactDetail" />

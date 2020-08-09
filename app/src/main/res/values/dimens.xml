@@ -9,6 +9,7 @@
     <dimen name="listContacts_description_textSize">16sp</dimen>
     <dimen name="toolbar_padding">6dp</dimen>
     <dimen name="toolBar_textSize">20sp</dimen>
+    <dimen name="padding_style_list_contacts">10dp</dimen>
 
 
 </resources>

@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-
-    <!-- Red gradient -->
-    <color name="colorRed_A400">#FF1744</color>
-    <color name="colorRed_900">#B71C1C</color>
+    <color name="colorPrimary">#222025</color>
+    <color name="colorPrimaryDark">@color/color_black</color>
+    <color name="colorAccent">@color/colorAmber_900</color>
 
     <!-- Amber gradient -->
     <color name="colorAmber_A400">#FFC400</color>
-    <color name="colorAmber_900">#FF6F00</color>
-
-    <!-- Green gradient -->
-    <color name="colorGreen_A400">#00E676</color>
-    <color name="colorGreen_900">#1B5E20</color>
+    <color name="colorAmber_900">#E6FB852A</color>
 
     <color name="color_white">#FFFFFF</color>
     <color name="color_black">#000000</color>
+    <color name="color_gray">#605E5E</color>
 </resources>

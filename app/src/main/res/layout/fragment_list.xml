@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ContactList"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewListContacts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/style_item_detail" />
+        tools:listitem="@layout/style_list_contacts" />
 
 </LinearLayout>

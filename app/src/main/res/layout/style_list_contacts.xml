@@ -4,18 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/padding_style_list_contacts"
+    android:paddingRight="@dimen/padding_style_list_contacts">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewListContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
         tool:src="@drawable/user_image_small" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -23,22 +24,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/imageViewListContacts"
         app:layout_constraintTop_toTopOf="parent"
-        tool:src="@drawable/image_favorite_false" />
+        android:src="@drawable/image_favorite_true" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/nameListContact"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
+        android:textColor="@color/color_white"
         android:textSize="@dimen/listContacts_contact_textSize"
         android:textStyle="bold"
-        android:textColor="@color/color_black"
-        app:layout_constraintStart_toEndOf="@+id/imageViewFavorite"
+        app:layout_constraintStart_toEndOf="@+id/imageViewListContacts"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="Name Contact" />
 
@@ -46,11 +47,22 @@
         android:id="@+id/descriptionContact"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="52dp"
         android:layout_marginTop="4dp"
+        android:textColor="@color/color_white"
         android:textSize="@dimen/listContacts_description_textSize"
-        app:layout_constraintStart_toEndOf="@+id/imageViewFavorite"
+        app:layout_constraintStart_toEndOf="@+id/imageViewListContacts"
         app:layout_constraintTop_toBottomOf="@+id/nameListContact"
         tool:text="Description Contact" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/color_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

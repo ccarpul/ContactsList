@@ -2,10 +2,12 @@ package com.example.mycontacs.ui
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -14,6 +16,10 @@ import com.example.mycontacs.R
 import com.example.mycontacs.adapter.AdapterListView
 import com.example.mycontacs.adapter.modelAdapter.ItemDetailModel
 import com.example.mycontacs.data.model.ModelContactsItem
+import com.example.mycontacs.utils.setIconCategoryContact
+import com.example.mycontacs.utils.setImage
+import com.example.mycontacs.utils.setupToolbar
+import com.example.mycontacs.utils.show
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_detail.*
@@ -37,11 +43,18 @@ class ContactDetail : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val contactDetail = contactsViewModel.getContactAtPosition() as ModelContactsItem
         configToolbar(contactDetail)
-        setupView(contactDetail)
+        setupItemsDetail(contactDetail)
+
+        val callback =
+            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+                contactsViewModel.setCategory(contactDetail.isFavorite, contactDetail.id)
+                findNavController().navigate(R.id.action_contactDetail_to_contactList)
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
-    fun setupView(contactDetail: ModelContactsItem) {
-        
+    private fun setupItemsDetail(contactDetail: ModelContactsItem) {
+
         nameDetailContact.text = contactDetail.name
         descriptionDetailContact.text = contactDetail.companyName
 
@@ -50,9 +63,6 @@ class ContactDetail : Fragment() {
             .resize(590, 590)
             .centerCrop()
             .into(imageViewDetailContact)
-
-        val address = contactDetail.address.run {
-            "${street}\n$city, $state $zipCode, $country" }.toString()
 
         val dataContactSelected = arrayListOf<ItemDetailModel?>()
 
@@ -77,6 +87,10 @@ class ContactDetail : Fragment() {
                     contactDetail.phone.work, getString(R.string.workTypePhone)
                 )
             )
+        val address = contactDetail.address.run {
+            "${street}\n$city, $state $zipCode, $country"
+        }.toString()
+
         dataContactSelected.add(
             ItemDetailModel(
                 getString(R.string.addressItemTitle), address, ""
@@ -94,47 +108,30 @@ class ContactDetail : Fragment() {
                 ), contactDetail.emailAddress, ""
             )
         )
-        imageViewTitleBar.visibility = View.VISIBLE
-        
-        if (contactDetail.isFavorite) {
-            textViewTitleBar.setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_back_arrow, 0, 0, 0
-            )
-            imageViewTitleBar.setBackgroundResource(R.drawable.image_favorite_true)
-        } else {
-            textViewTitleBar.setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_back_arrow, 0, 0, 0)
-            imageViewTitleBar.setBackgroundResource(R.drawable.image_favorite_false)
-        }
+        imageViewTitleBar.show()
+        imageViewTitleBar.setIconCategoryContact(contactDetail.isFavorite)
+        textViewTitleBar.setImage(R.drawable.ic_back_arrow)
 
-        val adapter = AdapterListView(activity, dataContactSelected)
-        listViewDetails.adapter = adapter
+        listViewDetails.adapter = AdapterListView(activity, dataContactSelected)
     }
 
-    private fun configToolbar(contactDetail: ModelContactsItem){
-        textViewTitleBar = (activity as MainActivity).textView_titleBar.apply {
-            text = getString(R.string.titleToolbar)
-            setTextColor(Color.BLUE)
-            textAlignment = View.TEXT_ALIGNMENT_TEXT_START
-        }
+    private fun configToolbar(contactDetail: ModelContactsItem) {
+        textViewTitleBar = (activity as MainActivity).textView_titleBar
+        textViewTitleBar.setupToolbar(
+            getString(R.string.titleToolbar),
+            resources.getColor(R.color.colorAccent),
+            View.TEXT_ALIGNMENT_TEXT_START
+        )
         textViewTitleBar.setOnClickListener {
-            findNavController().apply {
-                navigate(R.id.contactList)
-            }
+
+            findNavController().navigate(R.id.action_contactDetail_to_contactList)
+            contactsViewModel.setCategory(contactDetail.isFavorite, contactDetail.id)
         }
 
         imageViewTitleBar = (activity as MainActivity).toolBarImageCategory
-
-        imageViewTitleBar.setOnClickListener{
-            val category = if(contactDetail.isFavorite){
-                imageViewTitleBar.setBackgroundResource(R.drawable.image_favorite_false)
-                false
-            }else{
-                imageViewTitleBar.setBackgroundResource(R.drawable.image_favorite_true)
-                true
-            }
-            contactsViewModel.setCategory(category)
+        imageViewTitleBar.setOnClickListener {
+            imageViewTitleBar.setIconCategoryContact(!contactDetail.isFavorite)
+            contactDetail.isFavorite = !contactDetail.isFavorite
         }
     }
-
 }
