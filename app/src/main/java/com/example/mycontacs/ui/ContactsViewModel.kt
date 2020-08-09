@@ -8,7 +8,7 @@ import com.example.mycontacs.data.model.ModelContactsItem
 import com.example.mycontacs.utils.ResultWrapper
 import com.example.mycontacs.utils.customSort
 import kotlinx.coroutines.*
-import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.coroutines.CoroutineContext
 
 class ContactsViewModel(private val contactsRespository: ContactsRepository) :
@@ -27,11 +27,11 @@ class ContactsViewModel(private val contactsRespository: ContactsRepository) :
     private val uiModel = MutableLiveData<UiModel>()
     val model: LiveData<UiModel>
         get() {
-            if(uiModel.value == null) refresh()
+            if (uiModel.value == null) refresh()
             return uiModel
         }
-
-    private var contacts: ArrayList<Any> = arrayListOf()
+    private var responseData = arrayListOf<ModelContactsItem>()
+    private var contacts = arrayListOf<Any>()
     private var contactsError: String? = null
 
     sealed class UiModel {
@@ -39,9 +39,10 @@ class ContactsViewModel(private val contactsRespository: ContactsRepository) :
         class Content(val contacts: ArrayList<Any>) : UiModel()
         object ShowUi : UiModel()
     }
-     fun getContactAtPosition(): Any{
-         return contacts[pos]
-     }
+
+    fun getContactAtPosition(): Any {
+        return contacts[pos]
+    }
 
     fun getContacts() {
         launch {
@@ -49,8 +50,8 @@ class ContactsViewModel(private val contactsRespository: ContactsRepository) :
 
             when (val result = contactsRespository.getContacts()) {
                 is ResultWrapper.Success -> {
-                    val responseData = result.value
-                    contacts.addAll(customSort(responseData.toList()))
+                    responseData = result.value
+                    contacts.addAll(responseData.customSort())
                 }
                 is ResultWrapper.NetworkError -> {
                     contactsError = result.throwable.localizedMessage
@@ -65,8 +66,23 @@ class ContactsViewModel(private val contactsRespository: ContactsRepository) :
             uiModel.value = UiModel.Content(contacts)
         }
     }
-    fun refresh(){
+
+    fun refresh() {
         uiModel.value = UiModel.ShowUi
+    }
+
+    fun setCategory(category: Boolean) {
+
+        val newItemContact = contacts[pos] as ModelContactsItem
+        val idModifyContact = newItemContact.id
+        responseData.forEach {
+            if(it.id ==idModifyContact) {
+                it.isFavorite = category
+            }
+        }
+        contacts = arrayListOf()
+        contacts.addAll(responseData.customSort())
+        uiModel.value = UiModel.Content(contacts)
     }
 
     override fun onCleared() {

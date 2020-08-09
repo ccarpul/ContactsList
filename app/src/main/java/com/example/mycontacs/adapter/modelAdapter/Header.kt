@@ -1,4 +1,4 @@
-package com.example.mycontacs.adapter
+package com.example.mycontacs.adapter.modelAdapter
 
 
 

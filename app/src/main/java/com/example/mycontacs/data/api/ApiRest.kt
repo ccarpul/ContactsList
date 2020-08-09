@@ -7,6 +7,6 @@ import retrofit2.http.GET
 
 interface ApiRest {
 
-    @GET("${Constants.END_POINT}")
+    @GET(Constants.END_POINT)
     suspend fun getContacts(): ArrayList<ModelContactsItem>
 }

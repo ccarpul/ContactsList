@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycontacs.R
+import com.example.mycontacs.adapter.modelAdapter.Header
 import com.example.mycontacs.data.model.ModelContactsItem
 import com.example.mycontacs.utils.Category
 import com.squareup.picasso.Picasso
@@ -13,15 +14,11 @@ import kotlinx.android.synthetic.main.style_list_contacts.view.*
 import kotlin.collections.ArrayList
 
 
-class AdapterRecyclerView(
-    private var list: ArrayList<Any>,
-    private val listener: OnClickSelectedItem
-
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+class AdapterRecyclerView(private var list: ArrayList<Any>,
+                          private val listener: OnClickSelectedItem)
+    :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var originalList: ArrayList<Any> = arrayListOf()
-    private var pos = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
 
@@ -37,21 +34,13 @@ class AdapterRecyclerView(
                     LayoutInflater.from(parent.context)
                         .inflate(R.layout.header_recyclerview, parent, false)
                 )
-            } else -> throw ClassCastException("Unknown viewType ${viewType}")
+            } else -> throw ClassCastException("Unknown viewType $viewType")
         }
 
     fun addData(data: ArrayList<*>) {
         list.addAll(data)
-        originalList.addAll(list)
+        originalList.addAll(data)
         notifyDataSetChanged()
-    }
-
-    fun getPosition(): Int {
-        return pos
-    }
-
-    fun getOriginalList(): ArrayList<Any> {
-        return originalList
     }
 
     override fun getItemCount(): Int = list.size
