@@ -9,10 +9,7 @@ import kotlinx.coroutines.withContext
 
 class ContactsRepository(private val apiRest: ApiRest) {
 
-    private val dispatcher = Dispatchers.IO
-
     suspend fun getContacts(): ResultWrapper<ArrayList<ModelContactsItem>> =
-        withContext(Dispatchers.IO) {
-            safeApiCall(dispatcher) { apiRest.getContacts() }
-        }
+        safeApiCall(Dispatchers.IO) { apiRest.getContacts() }
+
 }

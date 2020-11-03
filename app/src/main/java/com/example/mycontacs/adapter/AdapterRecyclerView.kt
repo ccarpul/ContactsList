@@ -11,6 +11,7 @@ import com.example.mycontacs.data.model.ModelContactsItem
 import com.example.mycontacs.utils.Category
 import com.example.mycontacs.utils.hide
 import com.example.mycontacs.utils.show
+import com.google.android.material.shape.CornerFamily
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.header_recyclerview.view.*
 import kotlinx.android.synthetic.main.style_list_contacts.view.*
@@ -27,10 +28,14 @@ class AdapterRecyclerView(private var list: ArrayList<Any>,
 
         when (viewType) {
             Category.TYPE_ITEM -> {
-                ItemViewHolder(
-                    LayoutInflater.from(parent.context)
-                        .inflate(R.layout.style_list_contacts, parent, false)
-                )
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.style_list_contacts, parent, false)
+                view.imageViewListContacts.shapeAppearanceModel = view.imageViewListContacts.shapeAppearanceModel
+                    .toBuilder()
+                    .setTopLeftCorner(CornerFamily.ROUNDED, 50F)
+                    .setBottomRightCorner(CornerFamily.ROUNDED, 50F)
+                    .build()
+                ItemViewHolder(view)
             }
             Category.TYPE_HEADER -> {
                HeaderViewHolder(

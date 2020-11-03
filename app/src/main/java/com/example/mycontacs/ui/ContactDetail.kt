@@ -20,9 +20,11 @@ import com.example.mycontacs.utils.setIconCategoryContact
 import com.example.mycontacs.utils.setImage
 import com.example.mycontacs.utils.setupToolbar
 import com.example.mycontacs.utils.show
+import com.google.android.material.shape.CornerFamily
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.style_list_contacts.view.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class ContactDetail : Fragment() {
@@ -54,6 +56,12 @@ class ContactDetail : Fragment() {
     }
 
     private fun setupItemsDetail(contactDetail: ModelContactsItem) {
+
+        imageViewDetailContact.shapeAppearanceModel = imageViewDetailContact.shapeAppearanceModel
+            .toBuilder()
+            .setTopLeftCorner(CornerFamily.ROUNDED, 30F)
+            .setBottomRightCorner(CornerFamily.ROUNDED, 30F)
+            .build()
 
         nameDetailContact.text = contactDetail.name
         descriptionDetailContact.text = contactDetail.companyName

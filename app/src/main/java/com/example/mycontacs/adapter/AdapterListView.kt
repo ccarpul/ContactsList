@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentActivity
 import com.example.mycontacs.R
 import com.example.mycontacs.adapter.modelAdapter.ItemDetailModel
 import com.example.mycontacs.adapter.modelAdapter.ItemDetailViewHolder
+import com.google.android.material.shape.CornerFamily
+import kotlinx.android.synthetic.main.style_list_contacts.view.*
 import kotlin.collections.ArrayList
 
 class AdapterListView(
